@@ -1,16 +1,13 @@
 # CalculadoradeFlexo
 
-A new Flutter project.
+Projeto de uma calculadora para chão de fábrica. Industria de Papel Tèrmico e Etiquetas
+
+Project for a shop floor calculator. Thermal Paper and Label Industry
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+No momento o app apenas calcula a metragem linear a ser rodada em maquina para o operador.
+O objetivo é que a mesma tenha todas as funções do dia a dia, desde metragem linear a calculo de precificação.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+At the moment the app only calculates the linear footage to be run on a machine for the operator.
+The goal is that it has all the functions of day to day, from linear footage to pricing calculation.
