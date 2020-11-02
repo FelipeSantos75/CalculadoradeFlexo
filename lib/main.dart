@@ -38,15 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
+  final controllerQuantidade = TextEditingController();
+  final controllerColunas = TextEditingController();
+  final controllerMetros = TextEditingController();
+  var calc = CalculadoraFlexo();
+  String resultado = '';
   @override
   Widget build(BuildContext context) {
-    final controllerQuantidade = TextEditingController();
-    final controllerColunas = TextEditingController();
-    final controllerMetros = TextEditingController();
-    var calc = CalculadoraFlexo();
-    String resultado = '';
-    
-    
     var container = Container(
       decoration: BoxDecoration(
           border: Border.all(width: 8, color: Colors.white),
@@ -54,18 +52,19 @@ class _MyHomePageState extends State<MyHomePage> {
       child: FloatingActionButton(
         backgroundColor: Color(0xffdfab39),
         onPressed: () {
+          var resultado = (calc
+              .metrosaimprimir(
+                  int.parse(controllerColunas.text),
+                  int.parse(controllerQuantidade.text),
+                  double.parse(controllerMetros.text))
+              .toStringAsFixed(2));
           return showDialog(
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  content: Text(resultado),
+                  content: Text('Deve imprimir até $resultado metros lineares'),
                 );
               });
-
-          print(calc.metrosaimprimir(
-              int.parse(controllerColunas.text),
-              int.parse(controllerQuantidade.text),
-              double.parse(controllerMetros.text)));
         },
         tooltip: '',
         child: Icon(
@@ -95,10 +94,21 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Column(
               children: [
-                Formulario('Quantidade de  Caixas', TextInputType.number,
-                    controllerQuantidade),
-                Formulario('Metros', TextInputType.number, controllerMetros),
-                Formulario('Colunas', TextInputType.number, controllerColunas),
+                Formulario(
+                  'Quantidade de  Caixas',
+                  TextInputType.number,
+                  controllerQuantidade,
+                ),
+                Formulario(
+                  'Metros',
+                  TextInputType.number,
+                  controllerMetros,
+                ),
+                Formulario(
+                  'Colunas',
+                  TextInputType.number,
+                  controllerColunas,
+                ),
                 //Text(resultado, style: TextStyle(fontSize: 22),)
               ],
             )
@@ -106,7 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: container,
-      bottomNavigationBar: BottomNavigationBar(
+      
+      bottomNavigationBar: 
+      BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(null),
